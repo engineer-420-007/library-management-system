@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div className="h-[100vh] flex justify-center items-center">
-      <h1>Library Managment System</h1>
+    <div className="h-full flex justify-center items-center">
+      <h1>Library Management System</h1>
     </div>
   );
 }
