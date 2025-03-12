@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider, SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/ui/dark-toggle";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,29 +17,30 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body>
-          <SignedOut>
-            <section className="flex gap-x-3 mx-4 my-3">
-              <SignInButton mode="modal">
-                <Button size={"lg"}>
-                  <span className="cursor-pointer">Sign In</span>
-                </Button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <Button size={"lg"}>
-                  <span className="cursor-pointer">Sign Up</span>
-                </Button>
-              </SignUpButton>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <section className="mx-6 my-5">
+              <ModeToggle />
             </section>
-          </SignedOut>
-          <SignedIn>
-            <section className="mx-6 my-4">
-              <UserButton />
-            </section>
-          </SignedIn>
+            <SignedOut>
+              <section className="flex gap-x-3 mx-4 my-3">
+                <SignInButton mode="modal">
+                  <Button size={"lg"}>Sign In</Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button size={"lg"}>Sign Up</Button>
+                </SignUpButton>
+              </section>
+            </SignedOut>
+            <SignedIn>
+              <section className="mx-6 my-4">
+                <UserButton />
+              </section>
+            </SignedIn>
 
-          {children}
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
