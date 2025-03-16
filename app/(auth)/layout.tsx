@@ -2,6 +2,9 @@ import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { dark } from "@clerk/themes";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,18 +29,24 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     >
       <html lang="en" suppressHydrationWarning={true}>
         <body className="flex justify-center items-center bg-[#020618ee]">
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <main className="flex justify-between w-full">
-            {/* <ClerkLoading>
-              <div className="flex flex-col items-center justify-center sm:w-1/2 ">Loading</div>
-            </ClerkLoading> */}
-            {/* <ClerkLoaded> */}
-            <section className="flex flex-col items-center justify-center w-1/2 max-[950px]:w-full max-[950px]:h-screen">{children}</section>
-            {/* </ClerkLoaded> */}
+
+              <section className="flex mx-4 my-4">
+                <Link href="/">
+                  <Button size={"lg"}>Home</Button>
+                </Link>
+              </section>
+
+              <section className="flex flex-col items-center justify-center w-1/2 max-[950px]:w-full max-[950px]:h-screen">
+                {children}
+              </section>
 
             <section className="sm:block">
               <img src="/images/auth-illustration.png" alt="auth illustration" className="h-screen w-[50vw] object-cover max-[950px]:hidden" />
             </section>
           </main>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
