@@ -1,7 +1,7 @@
 "use client";
 import "/app/globals.css"; // Ensure correct path
 import { SignIn, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
-import Skeleton from "@/components/authform-skeleton";
+import Skeleton from "@/components/ui/authform-skeleton";
 
 export default function Page() {
   return (
