@@ -1,4 +1,6 @@
-import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
+import { ImSpinner9 } from "react-icons/im";
+import { Skeleton } from "./skeleton";
 
 interface authformSkeleton {
   type: "signin" | "signup";

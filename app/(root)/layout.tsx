@@ -33,7 +33,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en" suppressHydrationWarning={true}>
-        <body>
+        <body cz-shortcut-listen="true">
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <section className="flex items-center justify-between">
               <section className="mx-6 my-5">
