@@ -1,9 +1,13 @@
+import { IKImage, ImageKitProvider } from 'imagekitio-next'
 import React from 'react'
+
+const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
+const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 
 const BookOverview = ({title, author, genre, rating, total_copies, available_copies, description, color, cover, summary} : Book) => {
   return (
-    <section className="flex flex-col-reverse items-center gap-12 sm:gap-32 xl:flex-row xl:gap-8">
-      <div className="flex flex-1 flex-col gap-5">
+    <section className="flex flex-col-reverse items-center justify-around gap-12 sm:gap-32 xl:flex-row xl:gap-8 mx-10 my-10 w-full">
+      <div className="flex flex-col gap-5">
         <h1 className="text-5xl font-semibold text-white md:text-7xl">{title}</h1>
 
         <div className="mt-7 flex flex-row flex-wrap gap-4 text-xl text-light-100">
@@ -27,7 +31,7 @@ const BookOverview = ({title, author, genre, rating, total_copies, available_cop
             Total Books <span>{total_copies}</span>
           </p>
 
-          <p>
+          <p className="text-xl">
             Available Books 
             <span className="ml-2 font-semibold text-primary">
               {available_copies}
@@ -36,27 +40,19 @@ const BookOverview = ({title, author, genre, rating, total_copies, available_cop
           </p>
         </div>
 
-        <p className="mt-2 text-justify text-xl text-light-100">{description}</p>
+        <p className="mt-2 text-justify text-xl text-light-100 max-w-[600px]">
+          {description}
+        </p>
       </div>
 
-      <div className="relative flex flex-1 justify-center">
+      <div className="relative flex bg-white justify-center">
         <div className="relative">
-          {/* <BookCover
-            variant="wide"
-            className="z-10"
-            coverColor={coverColor}
-            coverImage={coverUrl}
-          /> */}
-
-          <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
-            {/* <BookCover
-              variant="wide"
-              coverColor={coverColor}
-              coverImage={coverUrl}
-            /> */}
-          </div>
+          <ImageKitProvider publicKey={publicKey} urlEndpoint={urlEndpoint}>
+            <IKImage path={cover} width={200} height={300} alt="Book"/>
+          </ImageKitProvider>
         </div>
       </div>
+
     </section>
   )
 }
